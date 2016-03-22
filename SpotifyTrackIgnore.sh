@@ -13,6 +13,8 @@ do
 	echo $song;
 	both=`echo "$song - $artist"`;
 
+	blacklist=`echo $blacklist | tr '[:upper:]' '[:lower:]'`;
+
 	match=`echo $blacklist | grep "$both"`;
 	if [ -n "$match" ]; then
 		echo "$match";
