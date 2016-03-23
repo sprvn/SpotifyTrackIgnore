@@ -15,10 +15,8 @@ do
 	blacklist=`echo $blacklist | tr '[:upper:]' '[:lower:]'`;
 	match="";
 	match=`echo $blacklist | grep "$both"`;
-	echo "mat: $match";
 	if [ -n "$match" ]; then
-		echo "$match";
 		dbus-send --print-reply --session --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 	fi
-	sleep 1;
+	sleep 0.25;
 done
