@@ -11,16 +11,12 @@ do
 
         blacklistRes=`cat blacklist.dat | sed 's/ //g' | grep -oiE "$both"`
 
-#	blacklist=`echo $blacklist | tr '[:upper:]' '[:lower:]'`;
-#	match="";
-#	match=`echo $blacklist | grep "$both"`;
 	if [ -n "$blacklistRes" ]; then
                 echo $blacklistRes;
 		dbus-send --print-reply --session --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 
                 resultTemp="1";
                 while [ -n "$resultTemp" ]; do 
-                    echo "yoyoy"
                     resultTemp=`dbus-send --print-reply --session --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:'org.mpris.MediaPlayer2.Player' string:'Metadata'`;
                     resultTemp=`echo $resultTemp | grep -oiE "$song"`;
                 done 
